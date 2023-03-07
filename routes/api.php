@@ -26,4 +26,12 @@ Route::post('/login', [AuthController::class,'login'])->name('api.login');
 Route::post('/register', [UserController::class,'register'])->name('register');
 
 
-Route::apiResource('tasks', TaskController::class);
+Route::middleware('jwt.auth')->group(function(){
+    Route::apiResource('tasks', TaskController::class);
+});
+
+Route::get('/',function (){
+    return response()->json(['message'=>'Welcome to API']);
+});
+
+

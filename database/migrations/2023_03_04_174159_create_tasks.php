@@ -17,9 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->string('status');
-            $table->date('create_date');
-            $table->date('completion_date');
+            $table->string('status')->default('created');
+            $table->date('completion_date')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

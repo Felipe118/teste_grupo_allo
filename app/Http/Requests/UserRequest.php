@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends FormRequest
 {
@@ -23,17 +24,39 @@ class UserRequest extends FormRequest
      */
     public function rules() :array
     {
-        return [
+        return $rules =  [
             'name' => ['required'],
-            'email' => ['required'],
+            'email' =>  ['required','email','max:255','unique:users'],
             'password' => ['required']
         ];
+
+
+        if ($this->method() === 'PATCH' || $this->method() === 'PUT' ) {
+            $rules['email'] = [
+                'required',
+                'email',
+                'max:255',
+                // "unique:users,email,{$this->id},id"
+                Rule::unique('users')->ignore($this->id),
+            ];
+
+            $rules['password'] = [
+                'nullable',
+                'min:6',
+                'max:100',
+            ];
+        }
+
+        return $rules;
     }
 
     public function messages() :array
     {
         return [
-            'required' => 'O campo :attribute é obrigatório'
+            'required' => 'O campo :attribute é obrigatório',
+            'email.max' => 'Só é permitido até 255 Caracteres',
+            'email.unique' => 'E-mail já cadastrado',
+            'email.email' => 'Digite um formato de email válido'
         ];
     }
 }

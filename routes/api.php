@@ -28,10 +28,13 @@ Route::post('/register', [UserController::class,'register'])->name('register');
 
 Route::middleware('jwt.auth')->group(function(){
     Route::apiResource('tasks', TaskController::class);
+    Route::get('/my-tasks',[TaskController::class, 'myTasks'])->name('task.myTasks');
+    Route::get('/my-tasks-conclued',[TaskController::class, 'getTaskConclued'])->name('task.getTaskConclued');
+    Route::patch('/my-task-conclued/{task}',[TaskController::class, 'markTaskConclued'])->name('task.myTasksConclued');
 });
 
 Route::get('/',function (){
-    return response()->json(['message'=>'Welcome to API']);
+    return response()->json(['message'=>'Welcome to API']); 
 });
 
 

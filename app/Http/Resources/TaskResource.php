@@ -21,7 +21,7 @@ class TaskResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'status' => $this->status,
-            'conclued' => isset($this->completion_date) ? $this->completion_date : '',
+            'conclued' => isset($this->completion_date) ? Carbon::make($this->completion_date)->format('d/m/Y') : '',
             'created' => Carbon::make($this->created_at)->format('d/m/Y'),
             'user' => new UserResource($this->user),
         ];

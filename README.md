@@ -7,7 +7,7 @@
 
 1 - Clone Repositório
 ```sh
-git clone 
+git clone https://github.com/Felipe118/teste_grupo_allo.git
 ``` 
 ```sh
 cd my-project/
@@ -35,6 +35,11 @@ composer install
 6 - Gere a key do projeto Laravel
 ```sh
 php artisan key:generate
+```
+
+7 - Para rodar os testes unitários comando:
+```sh
+php artisan test
 ```
 
 

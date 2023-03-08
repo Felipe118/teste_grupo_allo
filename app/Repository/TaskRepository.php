@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Models\Task;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
+
 
 class TaskRepository
 {
@@ -72,7 +72,11 @@ class TaskRepository
     public function delete(int $id)
     {
         $task = $this->task->findOrFail($id);
-   
+        $user = auth()->user();
+    
+        if($task->user_id != $user->id){
+            return response()->json(['message' => 'Não é possível excluir a tarefa de outro usuario'], 200);
+        }
         
         $task->delete();
         return response()->json(['message' => 'Tarefa deletada com sucesso'], 200);

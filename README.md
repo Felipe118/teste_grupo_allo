@@ -40,8 +40,12 @@ php artisan key:generate
 7 - Para rodar os testes unitários comando:
 ```sh
 php artisan test
-```
 
+```
+8 - Para rodar as migrations:
+```sh
+php artisan migrate
+```
 
 ### Rotas da aplicação
 

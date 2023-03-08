@@ -25,8 +25,9 @@ Route::get('/', function(){
 Route::post('/login', [AuthController::class,'login'])->name('api.login');
 Route::post('/register', [UserController::class,'register'])->name('register');
 
-
+ 
 Route::middleware('jwt.auth')->group(function(){
+    Route::post('/logout', [AuthController::class,'logout']);
     Route::apiResource('tasks', TaskController::class);
     Route::get('/my-tasks',[TaskController::class, 'myTasks'])->name('task.myTasks');
     Route::get('/my-tasks-conclued',[TaskController::class, 'getTaskConclued'])->name('task.getTaskConclued');

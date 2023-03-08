@@ -47,6 +47,6 @@ php artisan test
 php artisan migrate
 ```
 
-### Rotas da aplicação
+## Rotas da aplicação
 
-- <a href='https://documenter.getpostman.com/view/18812289/2s93JqTQyQ'>Link Docmeuntação da API</a>
+- <a href='https://documenter.getpostman.com/view/18812289/2s93JqTQyQ'>Link Documentação da API</a>

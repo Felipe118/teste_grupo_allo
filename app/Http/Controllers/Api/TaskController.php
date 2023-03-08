@@ -74,8 +74,8 @@ class TaskController extends Controller
     {
         $tasks = $this->taskRepository->getTaskConclued();
 
-        if(!isset($tasks)){
-           return response()->json(['message' => 'Nenhuma tarefa marca como concluida']);
+        if(count($tasks) == 0){
+           return response()->json(['message' => 'Nenhuma tarefa foi marcada como concluída']);
         }
         
         return TaskResource::collection($tasks);
